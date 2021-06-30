@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\BuscadorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ObservaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
-    Route::get('Buscador', BuscadorController::class, 'index')->name('buscador');
+    // Rutas para el uso del buscador
+    Route::get('observa', [ObservaController::class, 'index'])->name('observa');
+    Route::POST('buscarScielo', [ObservaController::class, 'buscarScielo'])->name('buscarScielo');
+    Route::POST('extraerData', [ObservaController::class, 'extraerData'])->name('extraerData');
+    Route::get('ExportarScielo', [ObservaController::class, 'exportarScielo'])->name('ExportarScielo');
 });
 
